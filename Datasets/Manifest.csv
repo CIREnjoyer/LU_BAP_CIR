@@ -1,0 +1,349 @@
+,Unnamed: 0,countryname,rile,partyname,date
+0,1,Sweden,-5.376,Green Ecology Party,202209
+1,2,Sweden,-36.674,Left Party,202209
+2,3,Sweden,-5.114,Social Democratic Labour Party,202209
+3,4,Sweden,10.624,LiberalsSweden,202209
+4,5,Sweden,-5.556,Christian Democrats,202209
+5,6,Sweden,18.194,Moderate Coalition Party,202209
+6,7,Sweden,4.295,Sweden Democrats,202209
+7,8,Sweden,4.704,Centre PartySweden,202209
+8,9,Denmark,15.534,Liberal Alliance,201906
+9,10,Denmark,-34.946,Alternativ,201906
+10,11,Denmark,-38.182,Red-Green Unity List,201906
+11,12,Denmark,-29.027,Socialist People’s Party,201906
+12,13,Denmark,-18.483,Social Democratic PartyDenmark,201906
+13,14,Denmark,-19.516,Danish Social-Liberal Party,201906
+14,15,Denmark,-17.483,LiberalsDenmark,201906
+15,16,Denmark,-7.202,Conservative People’s Party,201906
+16,17,Denmark,32.979,Danish People’s Party,201906
+17,18,Denmark,2.933,The New Right,201906
+18,19,Finland,-38.601,Green Union,201904
+19,20,Finland,-41.021,Left Wing Alliance,201904
+20,21,Finland,-23.413,Finnish Social Democrats,201904
+21,22,Finland,-32.222,Movement Now,201904
+22,23,Finland,-9.481,Christian Democrats in Finland,201904
+23,24,Finland,1.2,National Coalition,201904
+24,25,Finland,-21.687,Finnish Centre,201904
+25,26,Finland,-13.809,True Finns,201904
+26,27,Finland,-14.199,Swedish People’s Party,201904
+27,28,Iceland,-21.359,Left Green Movement,202109
+28,29,Iceland,-32.558,The Alliance - Social Democratic Party of Iceland,202109
+29,30,Iceland,-20.673,Reform Party,202109
+30,31,Iceland,6.923,Independence Party,202109
+31,32,Iceland,-7.383,Centre PartyIceland,202109
+32,33,Iceland,-13.369,Progressive PartyIceland,202109
+33,34,Iceland,-24.829,Pirate Party,202109
+34,35,Iceland,-49.18,People’s Party,202109
+35,36,Belgium,-32.6,Ecologists,201905
+36,37,Belgium,-21.849,Green!,201905
+37,38,Belgium,-33.686,Workers' Party of Belgium,201905
+38,39,Belgium,-19.199,Socialist Party Different,201905
+39,40,Belgium,-46.38,Francophone Socialist Party,201905
+40,41,Belgium,-8.0,Open Flemish Liberals and Democrats,201905
+41,42,Belgium,-15.893,Reform Movement,201905
+42,43,Belgium,-11.903,Christian Democratic and Flemish,201905
+43,44,Belgium,-5.667,Humanist Democratic Centre,201905
+44,45,Belgium,-0.062,"Democratic, Federalist,  Independent",201905
+45,46,Belgium,4.78,New Flemish Alliance,201905
+46,47,Belgium,8.387,Flemish Interest,201905
+47,48,Netherlands,-26.165,Green Left,202103
+48,49,Netherlands,-35.931,Socialist PartyNetherlands,202103
+49,50,Netherlands,-18.449,Volt Netherlands,202103
+50,51,Netherlands,-25.038,Together,202103
+51,52,Netherlands,-27.906,Labour PartyNetherlands,202103
+52,53,Netherlands,-23.651,DENK,202103
+53,54,Netherlands,-20.263,Democrats‘66,202103
+54,55,Netherlands,3.594,People’s Party for Freedom and Democracy,202103
+55,56,Netherlands,-0.367,Christian Democratic Appeal,202103
+56,57,Netherlands,-7.779,Christian Union,202103
+57,58,Netherlands,9.091,Party of Freedom,202103
+58,59,Netherlands,10.591,Forum for Democracy,202103
+59,60,Netherlands,7.396,Right Answer 21,202103
+60,61,Netherlands,-12.814,Farmer-Citizen Movement,202103
+61,62,Netherlands,-21.126,Party for the Animals,202103
+62,63,Netherlands,38.28,Reformed Political Party,202103
+63,64,Netherlands,-16.738,50Plus,202103
+64,65,Spain,-4.0,Basque Country Unite201904,201904
+65,66,Spain,-39.948,We can201904,201904
+66,67,Spain,-39.781,United Left201904,201904
+67,68,Spain,-29.267,Spanish Socialist Workers’ Party201904,201904
+68,69,Spain,-10.542,Citizens - Party of the Citizens201904,201904
+69,70,Spain,6.063,People's Party201904,201904
+70,71,Spain,34.783,Voice201904,201904
+71,72,Spain,-11.625,Basque Nationalist Party201904,201904
+72,73,Spain,-30.335,Catalan Republican Left201904,201904
+73,74,Spain,-23.007,Canarian Coalition–New Canaries201904,201904
+74,75,Spain,-18.743,Together for Catalonia201904,201904
+75,76,Spain,0.0,Regionalist Party of Cantabria201904,201904
+76,77,Spain,-31.661,More Commitment201904,201904
+77,78,Spain,-35.802,Basque Country Unite,201911
+78,79,Spain,-37.633,We can,201911
+79,80,Spain,-39.657,United Left,201911
+80,81,Spain,-30.068,More Country - Equo,201911
+81,82,Spain,-28.654,Spanish Socialist Workers’ Party,201911
+82,83,Spain,-15.293,Citizens - Party of the Citizens,201911
+83,84,Spain,4.481,People's Party,201911
+84,85,Spain,33.005,VoiceSpain,201911
+85,86,Spain,-10.193,Basque Nationalist Party,201911
+86,87,Spain,-27.413,Catalan Republican Left,201911
+87,88,Spain,-14.943,Canarian Coalition–New Canaries,201911
+88,89,Spain,-32.55,Galician Nationalist Bloc,201911
+89,90,Spain,-16.879,Together for Catalonia,201911
+90,91,Spain,-23.06,More Commitment,201911
+91,92,Spain,-8.929,Popular Unity Candidacy,201911
+92,93,Spain,-1.818,Teruel exists,201911
+93,94,Greece,17.083,Communist Party of Greece,201907
+94,95,Greece,-44.444,Coalition of the Radical Left,201907
+95,96,Greece,-21.732,European Realistic Disobedience Front,201907
+96,97,Greece,-22.892,Movement for Change,201907
+97,98,Greece,0.595,New Democracy,201907
+98,99,Greece,-2.123,Greek Solution,201907
+99,100,Greece,16.667,Golden Dawn,201907
+100,101,Portugal,-31.28,Ecologist Party ‘The Greens',201910
+101,102,Portugal,-25.473,People-Animals-Nature,201910
+102,103,Portugal,-24.095,Free,201910
+103,104,Portugal,-34.513,Left Bloc,201910
+104,105,Portugal,-31.77,Portuguese Communist Party,201910
+105,106,Portugal,-12.621,Socialist PartyPortugal,201910
+106,107,Portugal,-4.598,Social Democratic PartyPortugal,201910
+107,108,Portugal,13.853,Liberal Iniciative,201910
+108,109,Portugal,10.767,Social Democratic Center-Popular Party,201910
+109,110,Portugal,47.822,Enough,201910
+110,111,Germany,-21.038,Alliance‘90/Greens,202109
+111,112,Germany,-36.167,The LeftGermany,202109
+112,113,Germany,-24.673,Social Democratic Party of Germany,202109
+113,114,Germany,0.266,Free Democratic Party,202109
+114,115,Germany,3.495,Christian Democratic Union/Christian Social Union,202109
+115,116,Germany,-22.45,South Schleswig Voters’ Union,202109
+116,117,Germany,26.048,Alternative for Germany,202109
+117,118,Austria,-21.661,The Greens,201909
+118,119,Austria,-39.424,Austrian Social Democratic Party,201909
+119,120,Austria,2.703,Austrian Freedom Party,201909
+120,121,Austria,-10.077,The New Austria and Liberal Forum,201909
+121,122,Austria,2.086,Austrian People’s Party,201909
+122,123,Switzerland,-43.44,Together on the Left,201910
+123,124,Switzerland,-21.853,Green Party of Switzerland,201910
+124,125,Switzerland,2.083,Green Liberal Party,201910
+125,126,Switzerland,-44.741,Swiss Labour Party,201910
+126,127,Switzerland,-38.525,Social Democratic Party of Switzerland,201910
+127,128,Switzerland,15.051,FDP.The Liberals,201910
+128,129,Switzerland,-15.655,Christian Democratic People’s Party of Switzerland,201910
+129,130,Switzerland,13.178,Protestant People’s Party of Switzerland,201910
+130,131,Switzerland,34.627,Federal Democratic Union,201910
+131,132,Switzerland,41.036,Swiss People’s Party,201910
+132,133,Switzerland,-6.982,Conservative Democratic Party of Switzerland,201910
+133,134,Switzerland,23.077,Ticino League,201910
+134,135,United Kingdom,-20.367,Green Party of England and Wales,201912
+135,136,United Kingdom,-24.409,We OurselvesUnitedKingdom,201912
+136,137,United Kingdom,-31.845,Labour PartyUnitedKingdom,201912
+137,138,United Kingdom,-16.438,Social Democratic and Labour Party,201912
+138,139,United Kingdom,-19.564,Liberal Democrats,201912
+139,140,United Kingdom,-10.611,Alliance Party of Northern Ireland,201912
+140,141,United Kingdom,6.214,Conservative Party,201912
+141,142,United Kingdom,-18.717,The Party of Wales,201912
+142,143,United Kingdom,-24.463,Scottish National Party,201912
+143,144,United Kingdom,12.262,Democratic Unionist Party,201912
+144,145,Ireland,-17.301,Green PartyIreland,202002
+145,146,Ireland,-43.353,People Before Profit,202002
+146,147,Ireland,,Solidarity,202002
+147,148,Ireland,,RISE,202002
+148,149,Ireland,,Independents 4 Change,202002
+149,150,Ireland,-34.409,Labour PartyIreland,202002
+150,151,Ireland,-45.255,Social Democrats,202002
+151,152,Ireland,-15.221,Family of the Irish,202002
+152,153,Ireland,-19.837,Soldiers of Destiny,202002
+153,154,Ireland,-39.554,We OurselvesIreland,202002
+154,155,Ireland,-1.195,Unite,202002
+155,156,United States,-24.662,Democratic PartyUnitedStates,202011
+156,157,United States,32.969,Republican Party,202011
+157,158,Canada,-18.285,Green PartyCanada,201910
+158,159,Canada,-33.741,New Democratic Party,201910
+159,160,Canada,-6.277,Liberal Party of Canada,201910
+160,161,Canada,13.796,Conservative Party of Canada,201910
+161,162,Canada,-14.74,Quebec Bloc,201910
+162,163,Australia,-32.872,Australian Greens201905,201905
+163,164,Australia,-30.844,Australian Labor Party201905,201905
+164,165,Australia,-2.387,Liberal Party of Australia201905,201905
+165,166,Australia,-2.387,Liberal National Party of Queensland201905,201905
+166,167,Australia,8.984,Katter's Australian Party201905,201905
+167,168,Australia,-2.816,National Party of Australia201905,201905
+168,169,Australia,-21.569,Centre Alliance201905,201905
+169,170,Australia,-31.383,Australian Greens,202205
+170,171,Australia,-15.918,Australian Labor Party,202205
+171,172,Australia,5.29,Liberal Party of Australia,202205
+172,173,Australia,5.29,Liberal National Party of Queensland,202205
+173,174,Australia,14.815,Katter's Australian Party,202205
+174,175,Australia,6.137,National Party of Australia,202205
+175,176,Australia,-21.569,Centre Alliance,202205
+176,177,New Zealand,-26.932,Green Party of Aotearoa New Zealand,202010
+177,178,New Zealand,-16.238,New Zealand Labour Party,202010
+178,179,New Zealand,19.819,ACT New Zealand,202010
+179,180,New Zealand,3.723,New Zealand National Party,202010
+180,181,New Zealand,-7.229,New Zealand First Party,202010
+181,182,New Zealand,-23.895,Māori Party,202010
+182,183,Israel,-10.359,Blue and White201904,201904
+183,184,Israel,43.902,United Right201904,201904
+184,185,Israel,-31.737,Democratic Front for Peace and Equality201904,201904
+185,186,Israel,-9.218,Israeli Labour Party201904,201904
+186,187,Israel,-21.972,Meretz201904,201904
+187,188,Israel,-22.451,All of us201904,201904
+188,189,Israel,,Sephardi Torah Guardians201904,201904
+189,190,Israel,,United Torah Judaism201904,201904
+190,191,Israel,,The Consolidation201904,201904
+191,192,Israel,31.522,Israel is Our Home201904,201904
+192,193,Israel,,United Arab List201904,201904
+193,194,Israel,3.647,National Democratic Assembly201904,201904
+194,195,Israel,-35.0,Labour - Gesher201909,201909
+195,196,Israel,-32.396,Democratic Camp201909,201909
+196,197,Israel,-10.359,Blue and White201909,201909
+197,198,Israel,50.0,Right201909,201909
+198,199,Israel,,Joint List201909,201909
+199,200,Israel,,Sephardi Torah Guardians201909,201909
+200,201,Israel,,United Torah Judaism201909,201909
+201,202,Israel,,The Consolidation201909,201909
+202,203,Israel,-17.143,Israel is Our Home201909,201909
+203,204,Israel,-35.0,Labour - Gesher202003,202003
+204,205,Israel,-10.359,Blue and White202003,202003
+205,206,Israel,50.0,Right202003,202003
+206,207,Israel,-13.115,Joint List202003,202003
+207,208,Israel,,Sephardi Torah Guardians202003,202003
+208,209,Israel,,United Torah Judaism202003,202003
+209,210,Israel,,The Consolidation202003,202003
+210,211,Israel,11.982,Israel is Our Home202003,202003
+211,212,Israel,-6.475,Blue and White,202103
+212,213,Israel,19.461,Right,202103
+213,214,Israel,-30.667,Joint List,202103
+214,215,Israel,-34.94,Israeli Labour Party,202103
+215,216,Israel,-21.972,Meretz,202103
+216,217,Israel,-21.945,There is a Future,202103
+217,218,Israel,,Union of Israel,202103
+218,219,Israel,,Sephardi Torah Guardians,202103
+219,220,Israel,,Torah Flag,202103
+220,221,Israel,,The Consolidation,202103
+221,222,Israel,13.889,Israel is Our Home,202103
+222,223,Israel,-13.985,New Hope,202103
+223,224,Israel,4.143,Religious Zionist Party,202103
+224,225,Israel,,United Arab List,202103
+225,226,Armenia,-3.667,Armenia Alliance,202106
+226,227,Armenia,3.089,I have honor,202106
+227,228,Armenia,-17.359,Civil Contract,202106
+228,229,Armenia,-3.226,Prosperous Armenia,202106
+229,230,Croatia,-11.443,Restart Coalition,202007
+230,231,Croatia,-17.493,Party with a First and Last Name - Smart - Focus,202007
+231,232,Croatia,-28.213,We can!-political platform,202007
+232,233,Croatia,-48.251,Workers' Front,202007
+233,234,Croatia,-35.167,New Left,202007
+234,235,Croatia,-36.232,People's Party - Reformists,202007
+235,236,Croatia,-26.102,Bridge of Independent Lists,202007
+236,237,Croatia,-2.137,Croatian Democratic Union,202007
+237,238,Croatia,2.576,Croatian People’s Party - Liberal Democrats,202007
+238,239,Croatia,14.238,Miroslav Škoro Homeland Movement,202007
+239,240,Croatia,1.681,Independent Democratic Serbian Party,202007
+240,241,Estonia,-13.426,Social Democratic PartyEstonia,201903
+241,242,Estonia,-8.324,Estonian Center Party,201903
+242,243,Estonia,-2.623,Estonian Reform Party,201903
+243,244,Estonia,17.667,Pro Patria,201903
+244,245,Estonia,31.818,Conservative People's Party of Estonia,201903
+245,246,Georgia,-36.066,Georgian Labour Party,202010
+246,247,Georgia,-28.396,Strategy Aghmashenebeli,202010
+247,248,Georgia,-9.524,Try for Georgia,202010
+248,249,Georgia,-7.615,Georgian Dream - Democratic Georgia,202010
+249,250,Georgia,41.379,New Political Center - Girchi,202010
+250,251,Georgia,0.822,European Georgia - Movement for Liberty,202010
+251,252,Georgia,-21.98,United National Movement,202010
+252,253,Georgia,-7.38,Alliance of Patriots of Georgia,202010
+253,254,Lithuania,-31.361,Lithuanian Social Democratic Party,202010
+254,255,Lithuania,-20.308,Social Democratic Labour Party of Lithuania,202010
+255,256,Lithuania,-23.356,Labour PartyLithuania,202010
+256,257,Lithuania,-13.723,Liberal Movement,202010
+257,258,Lithuania,-10.984,Freedom Party,202010
+258,259,Lithuania,-10.726,Homeland Union - Lithuanian Christian Democrats,202010
+259,260,Lithuania,-17.241,Lithuanian Peasant and Green Union,202010
+260,261,Lithuania,-3.139,Election Action of Lithuania’s Poles,202010
+261,262,Moldova,-11.464,Electoral bloc NOW  Platform DA and PAS,201902
+262,263,Moldova,-11.111,Party of Socialists of the Republic of Moldova,201902
+263,264,Moldova,-20.0,Democratic Party of Moldova,201902
+264,265,Moldova,0.379,Liberal Party,201902
+265,266,Moldova,-20.0,Șor Party,201902
+266,267,Montenegro,25.0,Peace is our Nation202008,202008
+267,268,Montenegro,6.494,For the Future of Montenegro202008,202008
+268,269,Montenegro,-2.747,Democratic Party of Socialists of Montenegro202008,202008
+269,270,Montenegro,17.323,Social Democratic Party of Montenegro202008,202008
+270,271,Montenegro,-31.868,United Reform Action202008,202008
+271,272,Montenegro,-23.46,Social Democrats of Montenegro202008,202008
+272,273,Montenegro,-11.33,Bosniak Party202008,202008
+273,274,Montenegro,-5.842,Together!,202306
+274,275,Montenegro,-12.245,Aleksa and Dritan – Count Bravely!,202306
+275,276,Montenegro,,Albanian Forum,202306
+276,277,Montenegro,,Albanian Alliance,202306
+277,278,Montenegro,29.032,For the Future of Montenegro,202306
+278,279,Montenegro,,Socialist People’s Party of Montenegro,202306
+279,280,Montenegro,-14.676,Europe Now Movement,202306
+280,281,Montenegro,,Croatian Civic Initative,202306
+281,282,Montenegro,-3.383,Bosniak Party,202306
+282,283,Poland,-28.177,The LeftPoland,201910
+283,284,Poland,-17.282,Civic Coalition,201910
+284,285,Poland,-13.447,Polish Coalition,201910
+285,286,Poland,37.302,Confederation Liberty and Independence,201910
+286,287,Poland,11.179,Law and Justice,201910
+287,288,Poland,-20.664,Spring,201910
+288,289,Poland,-3.019,German Minority,201910
+289,290,Serbia,13.873,"Ivica Dačić –  Socialist Party of Serbia, United Serbia – Dragan Markovic Palma202006",202006
+290,291,Serbia,-9.756,Aleksandar Vučić — For Our Children202006,202006
+291,292,Serbia,46.104,Academician Muamer Zukorlic - Straight ahead - Party of Justice and Reconciliation (SPP) - Democratic Party of Macedonians (DPM)202006,202006
+292,293,Serbia,-3.125,Serbian Partiotic Alliance202006,202006
+293,294,Serbia,6.936,Alliance of Vojvodina Hungarians202006,202006
+294,295,Serbia,33.696,Party of Democratic Action202006,202006
+295,296,Serbia,,Party for Democratic Activity202006,202006
+296,297,Serbia,-48.04,We must,202204
+297,298,Serbia,-45.902,"Ivica Dačić –  Socialist Party of Serbia, United Serbia – Dragan Markovic Palma",202204
+298,299,Serbia,-25.0,United for the Victory of Serbia,202204
+299,300,Serbia,12.195,National Democratic Alternative,202204
+300,301,Serbia,-13.374,Aleksandar Vučić — For Our Children,202204
+301,302,Serbia,-17.895,Serbian Movement Dveri - Movement for the Restoration of the Kingdom of Seria,202204
+302,303,Serbia,,Serbian Party Oathkeepers,202204
+303,304,Serbia,-3.984,Alliance of Vojvodina Hungarians,202204
+304,305,Serbia,,Justice and Reconciliation Party,202204
+305,306,Serbia,,Party of Democratic Action,202204
+306,307,Ukraine,-13.861,Opposition Platform - For Life,201907
+307,308,Ukraine,-4.717,Opposition Bloc,201907
+308,309,Ukraine,2.128,Servant of the People,201907
+309,310,Ukraine,22.892,VoiceUkraine,201907
+310,311,Ukraine,-23.377,All-Ukrainian Union ‘Fatherland',201907
+311,312,Ukraine,25.0,European Solidarity,201907
+312,313,South Korea,-42.008,Justice Party,202004
+313,314,South Korea,-29.767,Democratic PartySouthKorea,202004
+314,315,South Korea,-36.538,Open Democratic Party,202004
+315,316,South Korea,-2.946,People Party,202004
+316,317,South Korea,-8.178,United Future Party - including Future Korea Party,202004
+317,318,Argentina,-32.366,Everyone's Front,201910
+318,319,Argentina,-20.859,Federal Consensus,201910
+319,320,Argentina,-0.862,Together for Change,201910
+320,321,Chile,-28.704,Approve Dignity,202111
+321,322,Chile,-19.015,New Social Pact,202111
+322,323,Chile,-18.174,Chile we can do more,202111
+323,324,Chile,3.136,Christian Social Front,202111
+324,325,Chile,-39.276,Progressive PartyChile,202111
+325,326,Chile,-16.187,Party of the People,202111
+326,327,Panama,-23.621,Joining forces,201905
+327,328,Panama,-18.237,Panama We Can Alliance,201905
+328,329,Panama,-22.066,For a Good Return,201905
+329,330,Panama,-24.473,Broad Front for Democracy,201905
+330,331,Panama,-31.565,IndependentPanama,201905
+331,332,Panama,-18.919,IndependentPanama,201905
+332,333,Panama,-18.717,IndependentPanama,201905
+333,334,Brazil,-12.844,Brazil of Hope,202210
+334,335,Brazil,-12.75,Brazil for Everyone,202210
+335,336,Brazil,12.316,For the Good of Brazil,202210
+336,337,South Africa,-24.871,Economic Freedom Fighters,201905
+337,338,South Africa,-21.924,African National Congress,201905
+338,339,South Africa,-3.093,United Democratic Movement,201905
+339,340,South Africa,-9.827,Good,201905
+340,341,South Africa,-5.344,National Freedom Party,201905
+341,342,South Africa,8.285,Democratic Alliance,201905
+342,343,South Africa,-2.834,Congress of the People,201905
+343,344,South Africa,12.5,African Christian Democratic Party,201905
+344,345,South Africa,-6.771,African Transformation Movement,201905
+345,346,South Africa,19.58,Freedom Front Plus,201905
+346,347,South Africa,-6.579,Inkatha Freedom Party,201905
+347,348,South Africa,-14.839,African Independent Congress,201905
