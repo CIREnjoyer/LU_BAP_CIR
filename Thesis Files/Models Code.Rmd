@@ -1,0 +1,224 @@
+---
+title: "Untitled"
+output: html_document
+date: "2025-05-13"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = TRUE,
+	message = FALSE,
+	warning = FALSE
+)
+```
+
+## Packages and Dataset
+
+```{r message=FALSE, warning=FALSE}
+library(httr)
+library(stringr)
+library(readr)
+library(progress) 
+library(dplyr)
+library(lme4)
+library(ggplot2)
+library(performance)
+library(lmtest)
+library(car)
+library(ggResidpanel)
+library(broom)
+library(expss)
+library(modelsummary)
+library(sjPlot)
+library(influence.ME)
+
+dta <- read.csv("https://raw.githubusercontent.com/CIREnjoyer/LU_BAP_CIR/refs/heads/main/Datasets/AnalysedData.csv") #download the original dataset
+
+dta <- dta |>
+  mutate(emot = (Language + Anger + Hope + Enthusiasm + Fear + Anxiety + Pride)/Words) #create a variable for emotionality
+
+group_dta <- dta |>
+  select(rile, date, partyname, countryname) |>
+  distinct(partyname, .keep_all = T) #create a dataset with unique values of parties
+
+avg_dta <- dta |>
+  group_by(partyname) |>
+  summarise(
+    emot_mean = mean(emot,
+                     na.rm = T),
+    count = n()
+  ) |>
+  ungroup() #calculate average emotionality for each unique party
+
+
+model_dta <- merge(avg_dta, group_dta, by = "partyname") #merge to make a dataset for a model
+
+model_dta <- model_dta |>  #final preprocessing 
+  mutate(partyname = gsub("\\d+", "", partyname)) |> #remove date suffixes from repeated parties
+  mutate(date = date %/% 100) |> #remove last to digits of date (YYYYMM -> YYYY)
+  mutate(rile = ((rile - mean(rile)) / sd(rile))) |> #standardise rile by z-score
+  mutate(emot_mean = (emot_mean - min(emot_mean)) / (max(emot_mean) - min(emot_mean))) |> #normalise emotionality
+  mutate(emot_mean = emot_mean * 100) |> #and multiply by 100
+  arrange(date) #arrange by date
+  
+model_dta$date <- as.factor(model_dta$date) #factorise the date
+```
+
+## Models
+
+### Visualisation
+
+```{r message=FALSE, warning=FALSE}
+summary(model_dta$rile) #IV
+summary(model_dta$emot_mean) #DV
+
+ggplot(model_dta, aes(x = rile, y = emot_mean)) + #plot of association
+  geom_point() +
+  labs(
+    x = "Ideology (Left-Right)",
+    y = "Emotionality (Low-High)"
+  )
+
+ggplot(model_dta, aes(x = rile, y = emot_mean)) + #plot of prediction
+  geom_point(alpha = 0.5) +
+  geom_smooth(
+    method  = "lm",
+    formula = y ~ x,
+    se      = FALSE,       
+    color   = "firebrick",
+  ) +
+  labs(
+    title = "Emotionality vs. Ideology with Linear Fit",
+    x     = "Ideology (Left-Right)",
+    y     = "Emotionality (Low-High)"
+  )
+```
+
+### Plain model
+
+```{r message=FALSE, warning=FALSE}
+model <- lm(emot_mean ~ rile, data = model_dta) #regression
+summary(model)
+
+#Assumptions
+
+durbinWatsonTest(model) #present autocorrelation, expected because of repeated entries
+
+resid_panel(model, plots = c ("resid")) #Residuals: a little compacted 
+
+resid_panel(model, plots = c("hist", "qq")) #Errors: a bit over the line but close to normality
+
+check_heteroscedasticity(model) #additional check for heteroscedasticity
+
+model_aug <- augment(model) #check for outliers
+
+summary(model_aug$.std.resid) #max 4.87, appears to have outliers
+
+summary(model_aug$.cooksd)
+
+resid_panel(model, plots = c("cookd")) #some values are pretty high, however negligible
+
+modelsummary(model,
+             stars = T,
+             coef_rename = c(
+               "(Intercept)" = "Intercept",
+               "rile" = "Ideology",
+               "date2020" = "Year: 2020",
+               "date2021" = "Year: 2021",
+               "date2022" = "Year: 2022"),
+             gof_map = c("nobs", "r.squared", "adj.r.squared"),
+               notes = ("Coefficients with standart errors in parenthesis")
+             ) #coefficient table
+```
+
+### Model with control
+
+```{r message=FALSE, warning=FALSE}
+model2 <- lm(emot_mean ~ rile + date, data = model_dta)
+summary(model2)
+
+durbinWatsonTest(model2) #present autocorrelation, as expected 
+
+vif(model2) #no multicollinearity
+
+resid_panel(model2, plots = c ("resid")) #residuls seem a bit compacted
+
+resid_panel(model2, plots = c("hist", "qq")) #errors close to normal
+
+check_heteroscedasticity(model2) #additional check for heteroscedasticity
+
+model2_aug <- augment(model2)
+
+summary(model2_aug$.std.resid) #outliers still present
+
+summary(model_aug$.cooksd)
+
+resid_panel(model, plots = c("cookd")) #some values are pretty high, however negligible
+
+modelsummary(model2,
+             stars = T,
+             coef_rename = c(
+               "(Intercept)" = "Intercept",
+               "rile" = "Ideology",
+               "date2020" = "Year: 2020",
+               "date2021" = "Year: 2021",
+               "date2022" = "Year: 2022"),
+             gof_map = c("nobs", "r.squared", "adj.r.squared"),
+               notes = ("Coefficients with standart errors in parenthesis")
+             ) c
+```
+
+### Model with random effect
+
+```{r message=FALSE, warning=FALSE}
+model4 <- lmer(emot_mean ~ rile + date + (1 | partyname), data = model_dta)
+summary(model4)
+
+r2(model4) #get r^2 for the model
+
+res <- residuals(model4, type = "response") #get residuals from the model
+
+durbinWatsonTest(res) #no excessive autocorrelation, as expected was fixed by the random effect  
+
+vif(model4) #no excessive multicollinearity
+
+resid_panel(model4, plots = c ("resid")) #residuals are formed in line
+
+resid_panel(model4, plots = c("hist", "qq")) #errors close to normal
+
+check_heteroscedasticity(model4) #additional check, heteroscedasticity is present
+
+infl <- influence(model4, obs = TRUE) 
+
+cd <- cooks.distance(infl) #extract cook's distance
+plot(cd, pch=20, ylab="Cook's D")
+abline(h = 4/(nrow(model_dta)-length(fixef(model4))), col="red", lty=2)
+
+modelsummary(model4,
+             stars = T,
+             coef_rename = c(
+               "(Intercept)" = "Intercept",
+               "rile" = "Ideology",
+               "date2020" = "Year: 2020",
+               "date2021" = "Year: 2021",
+               "date2022" = "Year: 2022"),
+             gof_map = c("nobs", "r.squared", "adj.r.squared"),
+             notes = ("Coefficients with standart errors in parenthesis")
+) #coefficient table
+```
+
+### Model comparison
+
+```{r message=FALSE, warning=FALSE}
+modelsummary(list(model, model2, model4),
+             stars = T,
+             coef_rename = c(
+               "(Intercept)" = "Intercept",
+               "rile" = "Ideology",
+               "date2020" = "Year: 2020",
+               "date2021" = "Year: 2021",
+               "date2022" = "Year: 2022"),
+             gof_map = c("nobs", "r.squared", "adj.r.squared"),
+             notes = ("Coefficients with standart errors in parenthesis")
+             )
+```
