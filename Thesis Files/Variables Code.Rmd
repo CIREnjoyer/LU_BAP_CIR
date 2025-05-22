@@ -1,0 +1,259 @@
+---
+title: "Thesis"
+output: html_document
+date: "2025-04-30"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = TRUE,
+	message = FALSE,
+	warning = FALSE
+)
+```
+
+## Dependent Variable
+
+### Get the dataset
+
+```{r message=FALSE, warning=FALSE}
+library(httr)
+library(stringr)
+library(readr)
+library(progress) 
+library(dplyr)
+
+dta <- read.csv("https://raw.githubusercontent.com/CIREnjoyer/LU_BAP_CIR/refs/heads/main/Thesis%20Files/Dataset%20preanalysis.csv") #retrieve the dataset
+
+dta <- dta |>
+  filter(!is.na(text)) |>
+  mutate(text = tolower(text)) |>
+  group_by(partyname) |>
+  slice_sample(n = 100) |>
+  ungroup()
+
+send_to_gpt <- function(text, api_key, model = "gpt-4o-mini") {
+  url <- "https://api.openai.com/v1/chat/completions"
+  
+  
+  response <- POST(
+    url = url,
+    add_headers(Authorization = paste("Bearer", api_key)),
+    content_type_json(),
+    encode = "json",
+    timeout(180),
+    body = list(
+      model = model,  
+      messages = list(list(role = "user", content = text))
+    )
+  )
+  
+  
+  parsed_response <- httr::content(response)
+  
+  
+  if (!is.null(parsed_response$choices) && length(parsed_response$choices) > 0) {
+    return(parsed_response$choices[[1]]$message$content)
+  } else {
+    print("Error: No valid response from API.")
+    return(NULL)
+  }
+  status <- status_code(response)
+if (status != 200) {
+  parsed <- httr::content(response)
+  msg <- if (!is.null(parsed$error$message)) parsed$error$message else "Unknown error"
+  message("GPT Error (HTTP ", status, "): ", msg)
+}
+
+}
+
+api_key <- "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"
+```
+
+### Analysis
+
+```{r message=FALSE, warning=FALSE}
+analyze_tweet <- function(tweet) {
+  prompt <- paste(
+    "Analyze the following Facebook post.",
+    "Return a JSON object with the following numeric values:",
+    "- 'language': inflammatory language level (0 to 1, two decimals)",
+    "- 'anger': anger level (0 to 1, two decimals)",
+    "- 'hope': hope level (0 to 1, two decimals)",
+    "- 'anxiety': anxiety level (0 to 1, two decimals)",
+    "- 'fear': fear level (0 to 1, two decimals)",
+    "- 'enthusiasm': enthusiasm level (0 to 1, two decimals)",
+    "- 'pride': pride level (0 to 1, two decimals)",
+    "- 'words': total word count (integer)",
+    "Return only the JSON object.",
+    "Do not include any explanation, formatting, code blocks, or comments.",
+    "Do not add backticks or say 'json'.",
+    "\n\nPost:", tweet
+  )
+  
+  result <- tryCatch({
+    response <- send_to_gpt(prompt, api_key)
+    Sys.sleep(1.5)
+    
+    response <- gsub("```json|```", "", response)
+    response <- trimws(response)
+    
+    parsed <- tryCatch({
+      jsonlite::fromJSON(response)
+    }, error = function(e) {
+      cat("JSON parse error:", conditionMessage(e), "\n")
+      writeLines(response, "malformed_response.txt")
+      return(NULL)
+    })
+    
+    if (is.null(parsed) || length(parsed) != 8) {
+      return(rep(NA, 8))
+    }
+    
+    return(unlist(parsed))
+  }, error = function(e) {
+    cat("General error:", conditionMessage(e), "\n")
+    Sys.sleep(5)
+    return(rep(NA, 8))
+  })
+  
+  return(result)
+}
+
+results <- matrix(NA, nrow = nrow(dta), ncol = 8)
+
+
+colnames(results) <- c("Language", "Anger", "Hope", "Enthusiasm", "Fear", "Anxiety", "Pride", "Words")
+
+
+pb <- txtProgressBar(min = 0, max = nrow(dta), style = 3)
+
+
+for (i in 1:nrow(dta)) {
+  results[i, ] <- analyze_tweet(dta$text[i])  
+  
+  # Autosave every 10 tweets by appending to CSV
+  if (i %% 10 == 0) {
+    if (i == 10) {
+      # First time writing: include header
+      write.csv(results[1:i, ], file = "autosave_results.csv", row.names = FALSE)
+    } else {
+      # Append only the new rows, no header
+      write.table(results[(i-9):i, ], file = "autosave_results.csv",
+                  append = TRUE, sep = ",", row.names = FALSE, col.names = FALSE)
+    }
+    message("Appended results up to tweet ", i)
+  }
+
+  setTxtProgressBar(pb, i)  
+}
+
+# Final save of any leftover rows
+remaining <- nrow(dta) %% 10
+if (remaining != 0) {
+  start <- nrow(dta) - remaining + 1
+  write.table(results[start:nrow(dta), ], file = "autosave_results.csv",
+              append = TRUE, sep = ",", row.names = FALSE, col.names = FALSE)
+  message("Appended final results from tweet ", start, " to ", nrow(dta))
+}
+
+close(pb)  # Close progress bar
+
+# Convert results to a dataframe
+results_df <- as.data.frame(results, stringsAsFactors = FALSE)
+colnames(results_df) <- c("Language", "Anger", "Hope", "Enthusiasm", "Fear", "Anxiety", "Pride", "Words")
+
+# Merge results with original dataset
+dta <- cbind(dta, results_df)
+
+#write.csv(dta, "Thesis_Data.csv") #save the data
+```
+
+## Merging with Independent Variable
+
+### Preparing the IV and DV
+
+```{r message=FALSE, warning=FALSE}
+dtaIVn <- read.csv("https://raw.githubusercontent.com/CIREnjoyer/LU_BAP_CIR/refs/heads/main/Datasets/MPDataset_MPDS2024a.csv") #retrieve the full dataset
+attach(dtaIVn)
+dtaIV <- data.frame(countryname, rile, partyname, date) 
+dtaIV <- dtaIV |>
+  filter(date > 201900) |>
+  filter(!is.na(rile))
+
+dtaIV <- dtaIV |> #rename the variables for smooth merging
+  mutate(partyname = case_when(
+    partyname == "Liberals" & countryname == "Sweden" ~ "LiberalsSweden",
+    partyname == "Socialist Party" & countryname == "Netherlands" ~ "Socialist PartyNetherlands",
+    partyname == "Social Democratic Party" & countryname == "Denmark" ~ "Social Democratic PartyDenmark",
+    partyname == "Social Democratic Party" & countryname == "Portugal" ~ "Social Democratic PartyPortugal",
+    partyname == "Labour Party" & countryname == "Netherlands" ~ "Labour PartyNetherlands",
+    partyname == "Labour Party" & countryname == "Ireland" ~ "Labour PartyIreland",
+    partyname == "We Ourselves" & countryname == "Ireland" ~ "We OurselvesIreland",
+    partyname == "Green Party" & countryname == "Ireland" ~ "Green PartyIreland", 
+    partyname == "The Left" & countryname == "Poland" ~ "The LeftPoland",
+    partyname == "Basque Country Unite" & date == "201904" ~ "Basque Country Unite201904",
+    partyname == "We can" & date == "201904" ~ "We can201904",
+    partyname == "United Left" & date == "201904" ~ "United Left201904",
+    partyname == "Spanish Socialist Workers’ Party" & date == "201904" ~ "Spanish Socialist Workers’ Party201904",
+    partyname == "Citizens - Party of the Citizens" & date == "201904" ~ "Citizens - Party of the Citizens201904",
+    partyname == "People's Party" & date == "201904" ~ "People's Party201904",
+    partyname == "Voice" & countryname == "Ukraine" ~ "VoiceUkraine",
+    partyname == "Voice" & date == "201904" ~ "Voice201904",
+    partyname == "Basque Nationalist Party" & date == "201904" ~ "Basque Nationalist Party201904",
+    partyname == "Catalan Republican Left" & date == "201904" ~ "Catalan Republican Left201904",
+    partyname == "Canarian Coalition–New Canaries" & date == "201904" ~ "Canarian Coalition–New Canaries201904",
+    partyname == "Together for Catalonia" & date == "201904" ~ "Together for Catalonia201904",
+    partyname == "More Commitment" & date == "201904" ~ "More Commitment201904",
+    partyname == "Blue and White" & date == "201904" ~ "Blue and White201904",
+    partyname == "Israel is Our Home" & date == "201904" ~ "Israel is Our Home201904",
+    partyname == "Labour - Gesher" & date == "201904" ~ "Labour - Gesher201904",
+    partyname == "Right" & date == "201904" ~ "Right201904",
+    partyname == "Joint List" & date == "201904" ~ "Joint List201904",
+    partyname == "Israeli Labour Party" & date == "201904" ~ "Israeli Labour Party201904",
+    partyname == "Meretz" & date == "201904" ~ "Meretz201904",
+    partyname == "Blue and White" & date == "201909" ~ "Blue and White201909",
+    partyname == "Israel is Our Home" & date == "201909" ~ "Israel is Our Home201909",
+    partyname == "Labour - Gesher" & date == "201909" ~ "Labour - Gesher201909",
+    partyname == "Right" & date == "201909" ~ "Right201909",
+    partyname == "Joint List" & date == "201909" ~ "Joint List201909",
+    partyname == "Israeli Labour Party" & date == "201909" ~ "Israeli Labour Party201909",
+    partyname == "Meretz" & date == "201909" ~ "Meretz201909",
+    partyname == "Blue and White" & date == "202003" ~ "Blue and White2020",
+    partyname == "Israel is Our Home" & date == "202003" ~ "Israel is Our Home2020",
+    partyname == "Labour - Gesher" & date == "202003" ~ "Labour - Gesher2020",
+    partyname == "Right" & date == "202003" ~ "Right2020",
+    partyname == "Joint List" & date == "202003" ~ "Joint List2020",
+    partyname == "Israeli Labour Party" & date == "202003" ~ "Israeli Labour Party2020",
+    partyname == "Meretz" & date == "202003" ~ "Meretz2020",
+    T ~ partyname
+  ))
+
+dta <- dta |> #additional renaming pf the DV for smooth merging
+  mutate(partyname = case_when(
+    partyname == "Liberals" & user.name == "Liberalerna" ~ "LiberalsSweden",
+    partyname == "Socialist Party" & user.name == "SP" ~ "Socialist PartyNetherlands",
+    partyname == "Social Democratic Party" & user.name == "Socialdemokratiet" ~ "Social Democratic PartyDenmark",
+    partyname == "Social Democratic Party" & user.name == "Partido Social Democrata" ~ "Social Democratic PartyPortugal",
+    partyname == "Labour Party" & user.name == "Partij van de Arbeid (PvdA)" ~ "Labour PartyNetherlands",
+    partyname == "Labour Party" & user.name == "Labour Party" ~ "Labour PartyIreland",
+    partyname == "We Ourselves" & user.name == "Sinn Féin Ireland" ~ "We OurselvesIreland",
+    partyname == "Green Party" & user.name == "Green Party Ireland" ~ "Green PartyIreland", 
+    partyname == "The Left" & user.name == "Lewica" ~ "The LeftPoland",
+    T ~ partyname
+  ))
+```
+
+### Merging
+
+```{r message=FALSE, warning=FALSE}
+dta_ready <- merge(dta, dtaIV, by = "partyname", all = T) #merging
+
+dta_ready <- dta_ready |> #final cleaning
+  filter(!is.na(rile)) |>
+  filter(!is.na(text)) |>
+  filter(!is.na(Words)) |>
+  filter(!duplicated(text))
+
+#write.csv(dta_ready, "AnalysedData.csv") #save the dataset
+```

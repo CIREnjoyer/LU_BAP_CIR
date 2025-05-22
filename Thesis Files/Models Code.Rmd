@@ -55,7 +55,7 @@ model_dta <- merge(avg_dta, group_dta, by = "partyname") #merge to make a datase
 
 model_dta <- model_dta |>  #final preprocessing 
   mutate(partyname = gsub("\\d+", "", partyname)) |> #remove date suffixes from repeated parties
-  mutate(date = date %/% 100) |> #remove last to digits of date (YYYYMM -> YYYY)
+  mutate(date = date %/% 100) |> #remove last two digits of date (YYYYMM -> YYYY)
   mutate(rile = ((rile - mean(rile)) / sd(rile))) |> #standardise rile by z-score
   mutate(emot_mean = (emot_mean - min(emot_mean)) / (max(emot_mean) - min(emot_mean))) |> #normalise emotionality
   mutate(emot_mean = emot_mean * 100) |> #and multiply by 100
@@ -71,13 +71,25 @@ model_dta$date <- as.factor(model_dta$date) #factorise the date
 ```{r message=FALSE, warning=FALSE}
 summary(model_dta$rile) #IV
 summary(model_dta$emot_mean) #DV
+ggplot(model_dta, aes(x =  emot_mean)) + 
+  geom_histogram(
+    bins = 25,
+    fill = "steelblue",
+    color = "white",
+    alpha = 0.8
+  ) +
+  labs(
+    x = "Value",
+    y = "Frequency"
+  )
 
 ggplot(model_dta, aes(x = rile, y = emot_mean)) + #plot of association
   geom_point() +
   labs(
     x = "Ideology (Left-Right)",
     y = "Emotionality (Low-High)"
-  )
+  ) +
+  geom_smooth(method = "loess")
 
 ggplot(model_dta, aes(x = rile, y = emot_mean)) + #plot of prediction
   geom_point(alpha = 0.5) +
@@ -165,7 +177,7 @@ modelsummary(model2,
                "date2022" = "Year: 2022"),
              gof_map = c("nobs", "r.squared", "adj.r.squared"),
                notes = ("Coefficients with standart errors in parenthesis")
-             ) c
+             ) 
 ```
 
 ### Model with random effect
