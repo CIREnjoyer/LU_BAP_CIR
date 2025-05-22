@@ -67,7 +67,7 @@ if (status != 200) {
 
 }
 
-api_key <- "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"
+api_key <- "key" #insert the key
 ```
 
 ### Analysis
